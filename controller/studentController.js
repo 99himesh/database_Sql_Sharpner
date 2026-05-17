@@ -2,7 +2,7 @@ const db=require("../utils/database.JS")
 
 const addEnteries=(req,res)=>{
    const {name,email}=req.body;
-   const addEntry=`INSERT INTO STUDENTS (name,email) VALUES (?,?)`
+   const addEntry=`SELECT INSERT INTO STUDENTS (name,email) VALUES (?,?)`
    db.execute(addEntry,[name,email],(err)=>{
     if(err){
         console.log(err.message);

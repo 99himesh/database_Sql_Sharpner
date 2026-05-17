@@ -15,13 +15,26 @@ connection.connect((err)=>{
     return;
   }
   console.log("Connection has been created");
-  const createQuery=
+  const createQuery=[
              `CREATE TABLE IF NOT EXISTS Students(
               id int primary key AUTO_INCREMENT,
               name varchar(20),
               email varchar(100)
+            )`,
+            `CREATE TABLE IF NOT EXISTS Bus(
+              id int primary key AUTO_INCREMENT,
+              busName varchar(20),
+              busNumber int,
+              availableSeats int
+            )`,
+            `CREATE TABLE IF NOT EXISTS Users(
+              id int primary key AUTO_INCREMENT,
+              name varchar(20),
+              email varchar(100)
             )`
-   connection.execute(createQuery,(err)=>{
+          ]
+   createQuery.map((query)=>{
+    return connection.execute(query,(err)=>{
     if(err){
         connection.end();
         return;   
@@ -29,6 +42,8 @@ connection.connect((err)=>{
     console.log("table is created ");
     
    })
+   })
+   
   
   })
 
